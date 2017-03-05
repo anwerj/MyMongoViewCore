@@ -12,6 +12,7 @@ module.exports = function (app, passport) {
 
     connectionRouter.get('/:_con/views', ViewController.all);
     connectionRouter.get('/:_con/view', ViewController.one);
+    connectionRouter.post('/:_con/view', ViewController.upsert);
 
     connectionRouter.get('/:_con/collections', CollectionController.all);
     connectionRouter.get('/:_con/collection', CollectionController.query);

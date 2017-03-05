@@ -93,6 +93,14 @@ ul,li{
 .viewname{
     color: white;
 }
+.viewedit{
+    color: #eee;
+    padding: 2px 2px 2px 5px;
+}
+.vpromtEdit .vieweditcontent{
+    height: 50vh;
+}
+
 .viewnav{
     width: 100%;
     float: left;

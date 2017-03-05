@@ -6,9 +6,8 @@ $(document).ready(function(){
     });
     xhr.done(function(data){
         $("#views-list").html(Html('#tViewSide',{views : data}));
-        activateViewList();
         activateHash();
-        $('#'+APP_HASH.i+'_item').click();
+        activateViewList();
     }).error(function(xhr){
         $('.results').removeClass('rows').html(xhr.responseText);
     });
@@ -16,16 +15,7 @@ $(document).ready(function(){
     var activateViewList = function(){
 
         $(".viewname").unbind('click').click(function(event){
-
-            var viewname = $(this).data('name');
-            var index = $(this).data('index');
-
-            var xhr = $.ajax({
-                url : APP_PATH+'view',
-                data : {name:viewname},
-                dataType : 'JSON'
-            });
-            xhr.done(function(data){
+            callView($(this).parent(), function(data){
                 var v = new View(data);
                 v.activate();
                 if(APP_HASH.s){
@@ -33,7 +23,49 @@ $(document).ready(function(){
                 }
             });
         });
+
+        $(".viewedit").unbind('click').click(function(event){
+            callView($(this).parent(), function(data, view){
+                $('#vieweditPrompt').modal();
+                $('#vieweditPrompt .vieweditname').val($(view).data('name'));
+                $('#vieweditPrompt .vieweditcontent')
+                    .val(JSON.stringify(data, true, 4));
+            });
+        });
+
+        $('.vpromtEdit').unbind('submit').submit(function(event){
+            event.preventDefault();
+            var data = {
+                name : $(this).find('.vieweditname').val(),
+                content : JSON.parse($(this).find('.vieweditcontent').val())
+            }
+            var xhr = $.ajax({
+                type: 'post',
+                url: APP_PATH+'view',
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                traditional: true
+            });
+            xhr.done(function(data){
+                console.log(data);
+                $('#vieweditPrompt').modal('hide');
+            })
+        });
     };
+
+    var callView = function(view, callback){
+        var viewname = $(view).data('name');
+        var index = $(view).data('index');
+
+        var xhr = $.ajax({
+            url : APP_PATH+'view',
+            data : {name:viewname},
+            dataType : 'JSON'
+        });
+        xhr.done(function(data){
+            callback(data, view);
+        });
+    }
 
     var activateHash = function(){
         var hash = window.location.hash.slice(1).split('/');
