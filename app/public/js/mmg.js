@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+
     $(document).keypress(function(event){
 
         if(event.ctrlKey){
@@ -12,7 +12,7 @@ $(document).ready(function(){
             $(".query.active .submit").click();
         }
     };
-    
+
     toggleInput = function(selector){
         if($(selector).hasClass('disabled')){
             $(selector).removeClass('disabled').attr('disabled', null);

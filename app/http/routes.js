@@ -2,7 +2,7 @@ var express = require('express'),
     ClientAuth = require('./middlewares/ClientAuthWare'),
     ViewController = require('./controllers/ViewController'),
     CollectionController = require('./controllers/CollectionController');
-    
+
 module.exports = function (app, passport) {
 
     app.use(ClientAuth);

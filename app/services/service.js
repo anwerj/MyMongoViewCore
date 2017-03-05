@@ -5,7 +5,7 @@ var  _lodash = require('lodash'),
 function service(connect, collection){
     this.connect = connect;
     this.connection = _mmv.Connections[connect];
-    this.config = 
+    this.config = _mmv.config;
     this.collectionName = collection;
     if(collection)
         this.collection = this.connection.db.collection(collection);
@@ -44,14 +44,14 @@ service.prototype.collections = function(forceRefresh){
             return reject(err);
         }
     });
-    
+
     return query;
 };
 
 service.prototype.distinct = function(context){
     var query = this.collection
                 .distinct(context.key, context.filter);
-    
+
     return query;
 };
 
@@ -122,7 +122,7 @@ service.prototype.getQuery = function(context){
             break;
         case 'aggregate':
             queryString+=JSON.stringify(context.aggregate)+','+JSON.stringify(context.aggregateOption)+')';
-            break;        
+            break;
     }
     return queryString;
 };
@@ -136,10 +136,10 @@ service.prototype.stringify = function(item){
         } else if(c instanceof ObjectId){
             str+= '"'+i+'"'+': ObjectId("'+c+'"),'
         } else {
-            str+= '"'+i+'"'+':' + 
-            (_lodash.isArray(c) ? JSON.stringify(c) : 
-                ('object' === typeof c ? this.stringify(c) : 
-                    ('boolean' === typeof c ? c : 
+            str+= '"'+i+'"'+':' +
+            (_lodash.isArray(c) ? JSON.stringify(c) :
+                ('object' === typeof c ? this.stringify(c) :
+                    ('boolean' === typeof c ? c :
                         ('number' === typeof c ? c : '"'+c+'"'))))
             +","
         }

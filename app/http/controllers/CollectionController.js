@@ -68,7 +68,7 @@ module.exports = {
     feed : function(req, res){
 
         var context = requestp.toContext(req.query);
-        
+
         new service(req.params._con, context.collection).distinct(context)
             .then(function(names){
                 res.send(names);
@@ -76,7 +76,7 @@ module.exports = {
                 res.status(500).send(err);
             });
     },
-    
+
     refresh : function(req, res){
         var context = requestp.toContext(req.query), r;
         var s = new service(req.params._con, context.collection);
@@ -105,7 +105,7 @@ module.exports = {
             callback(err);
         });
     },
-    
+
     delete : function(req, res){
         var context = requestp.toContext(req.query), r;
         var s = new service(req.params._con, context.collection);

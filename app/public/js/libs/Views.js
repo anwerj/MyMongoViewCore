@@ -24,18 +24,21 @@ View.prototype.getNav = function(parentRandom){
     }
     return $('#nav'+this.random);
 }
+
 View.prototype.getQuery = function(){
     $('.queries').append(Html('#tQuery', {
         id : 'query'+this.random, view : this.view, collections : Storage.get('collections', true)
     }));
     return $('#query'+this.random);
 }
+
 View.prototype.getResult = function(){
     $('.results').append(Html('#tResult', {
         id : 'result'+this.random, view : this.view
     }));
     return $("#result"+this.random);
 }
+
 View.prototype.setPrompt = function(){
     var _this = this, prompt, operators, defaultOperators = {};
     this.promptList = {};
@@ -52,10 +55,10 @@ View.prototype.setPrompt = function(){
                 prompt.value = operators[operator];
                 _this.appendPrompt(prompt);
             }
-            
         }
-    }    
+    }
 }
+
 View.prototype.appendPrompt = function(prompt){
     var feed = prompt.feed ? Feed.load(this.query.find('.qcollection').val(), prompt.name) : null;
 
@@ -64,18 +67,14 @@ View.prototype.appendPrompt = function(prompt){
         id : id,
         prompt : prompt
     })
-    if(this.promptList[id]){
+    if(this.query.find('#'+id).length){
         this.query.find('#'+id).replaceWith(html);
     } else {
-        this.promptList[id] = prompt;
         this.query.find('.qpromt').append(html);
     }
     return id;
 }
-View.prototype.removePrompt = function(id){
-    $('#'+id).remove();
-    this.promptList[id] = null;
-}
+
 View.prototype.fillFilter = function(prompt){
     var fpromptModal = this.query.find('.fpromptModal');
     for(var i in prompt){
@@ -83,11 +82,12 @@ View.prototype.fillFilter = function(prompt){
             fpromptModal.find('[name="'+i+'"]').val(prompt[i]);
         }
     }
-    
+
     fpromptModal.modal();
 }
+
 View.prototype.addFilter = function(submit){
-    
+
     $('#query'+this.random+'fPrompt').modal('toggle');
     var prompt = this.query.find('.qpromtAdd').serializeObject();
     this.query.find('.qpromtAdd')[0].reset();
@@ -105,10 +105,8 @@ View.prototype.activate = function(){
     $(".viewnav.active").removeClass('active');
     this.nav.addClass('active');
 
-
     $(".query.active").removeClass('active');
     this.query.addClass('active');
-
 
     $(".result.active").removeClass('active');
     this.result.addClass('active');
@@ -116,7 +114,7 @@ View.prototype.activate = function(){
 };
 
 View.prototype.submit = function(data){
-    
+
     var _this = this;
     var dataObject = data || this.query.find('.viewForm').serialize();
 
@@ -154,6 +152,7 @@ View.prototype.actionStart = function(action){
     this.nav.find('.vn-name .glyphicon').addClass('glyphicon-repeat gly-spin');
     this.query.find('.queryActions .submit .glyphicon').addClass('gly-spin');
 }
+
 View.prototype.actionStop = function(action){
     this.query.find('.queryActions .submit .glyphicon').removeClass('gly-spin');
         this.nav.find('.vn-name .glyphicon').removeClass('glyphicon-repeat gly-spin');
@@ -175,7 +174,7 @@ View.prototype.appendSuccess = function(data){
         }
         result.end();
     } else {
-        
+        // Do something, Karen
     }
 }
 
@@ -208,13 +207,10 @@ View.prototype.bindEvents = function(){
     to.query.find('.qpromtAdd').submit(function(event){
         event.preventDefault();
         to.addFilter(true);
-    }); 
+    });
     to.query.find('.btnAddFilter').click(function(event){
         event.preventDefault();
         to.addFilter();
     });
-    to.query.find('.removePrompt').click(function(event){
-        to.removePrompt($(this).data('remove'));
-    })
 };
 

@@ -1,6 +1,5 @@
 var views = require('../../services/views');
 
-
 module.exports = {
     all : function(req, res){
         var v = new views(req.params._con);

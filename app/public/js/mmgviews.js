@@ -16,7 +16,7 @@ $(document).ready(function(){
     var activateViewList = function(){
 
         $(".viewname").unbind('click').click(function(event){
-            
+
             var viewname = $(this).data('name');
             var index = $(this).data('index');
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
             });
         });
     };
-    
+
     var activateHash = function(){
         var hash = window.location.hash.slice(1).split('/');
         APP_HASH = {};
@@ -43,30 +43,30 @@ $(document).ready(function(){
             APP_HASH[inHash[0]] = inHash[1];
         });
     }
-    
+
     $(".viewlist .title").click(function(){
         $(this).parent().toggleClass('active');
     });
-    
+
     $('.collectionbtn').click(function(){
         $(".query.active .qcollection").val($(this).data('collection'));
         $(".collections").removeClass('active');
     });
-    
+
     $('.collist').click(function(){
         $(".collections").toggleClass('active');
     });
-    
+
     $('.results').click(function(){
         $(".collections").removeClass('active');
     })
-    
+
     $('#connect').change(function(){
         var newCon = $(this).val();
         var location = APP_HOST+'c/'+newCon+'/'+window.location.hash;
         window.location = location;
     });
-    
+
     $('#searchCollection').keyup(function(){
         var val = $(this).val().toLowerCase().trim();
         $('.collectionbtn').each(function(index, item){
@@ -78,7 +78,7 @@ $(document).ready(function(){
             }
         })
     });
-    
+
     $('#refreshCollection').click(function(){
         $(this).find('span').addClass('gly-spin');
         var xhr = $.ajax({
@@ -90,5 +90,5 @@ $(document).ready(function(){
             window.location.reload();
         });
     })
-    
+
 });

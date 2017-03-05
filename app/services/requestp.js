@@ -56,11 +56,11 @@ module.exports = {
     toLimit : function(limit){
         return parseInt(limit) || 10;
     },
-    
+
     toKey : function(key){
         return new String(key).toString();
     },
-    
+
     toData : function(input){
 
         var out = {};
@@ -72,7 +72,7 @@ module.exports = {
                     if(inset){
                         if('undefined' === typeof out[keyName]){
                             out[keyName] = {};
-                        }                        
+                        }
                         out[keyName][inset.operatorKey] = inset.operatorValue;
                     }
                 });
@@ -81,37 +81,37 @@ module.exports = {
 
         return out;
     },
-    
+
     toSet : function(input){
-        
+
         if(input){
             var set= {};
             _lodash.each(input, function(obj, keyName){
                 set[keyName] = convertor.convertToValue(obj.value, obj.dataType);
             })
-        } 
+        }
         return {$set : set};
     },
-    
+
     toAggregate : function(context){
         var acc = {};
-        var accumulator_field = context.accumulator_field 
-            && (context.accumulator_field.indexOf('$') === 0) 
+        var accumulator_field = context.accumulator_field
+            && (context.accumulator_field.indexOf('$') === 0)
             && context.accumulator_field;
         acc['$'+context.accumulator] = accumulator_field || 1;
         return [
             { $match : context.filter },
             { $group : { _id : context.group, acc : acc}},
-            { $sort : { _id : context.order}},            
+            { $sort : { _id : context.order}},
             { $skip : context.skip },
             { $limit : context.limit },
         ];
     },
-    
+
     toAggregateOption : function(context){
         return {};
     },
-    
+
     getResponse : function(context, service){
         return {
             meta : {
@@ -121,11 +121,11 @@ module.exports = {
                 count : null,
                 hasMore : false,
                 context : context
-            },            
+            },
             result : []
         };
     },
-    
+
     finalizeResponse : function(response, result){
 
         response.meta.endAt = Date.now();
@@ -141,6 +141,6 @@ module.exports = {
 
         return response;
     }
-    
+
 
 };

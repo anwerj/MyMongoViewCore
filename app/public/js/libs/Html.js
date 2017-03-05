@@ -2,9 +2,7 @@ function Html(selector, render){
     return new EJS({text : $(selector).html()}).render(render);
 }
 Html.beautify = function(item, key){
-    
     return Html('#tResultBeauty', { item : item, key : key, lkey : null});
-    
 }
 Html.valueType = function(item){
     var typeOf = typeof item;

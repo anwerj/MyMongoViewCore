@@ -3,9 +3,9 @@
 
     <title>MyMongoView | <?= config.connections[params._con].name ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <base href="<?= appPath+conPath ?>">
-    
+
     <link rel="stylesheet" href="<?= appPath ?>public/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= appPath ?>public/css/mymongiew.css">
     <link rel="stylesheet" href="<?= appPath ?>public/css/base.css">
@@ -30,14 +30,14 @@
         APP_CONNECTION = '<?= params._con ?>';
         APP_TEST = {};
     </script>
-    
+
     <script src="<?= appPath ?>public/js/mmg.js"></script>
     <script src="<?= appPath ?>public/js/mmgviews.js"></script>
 
 </head>
 
 <body>
-    
+
     <div class="base">
         <div class="box">
             <div class="col-md-3 sidebar rows bgdarker">
@@ -94,7 +94,7 @@
                             </div>
                             <small><?= item.count ?> docs</small>
                         </div>
-                    <? }) ?>                    
+                    <? }) ?>
                 </div>
 
                 <div class="queries col-md-12 rows">
@@ -116,14 +116,14 @@
             <li><a class="viewname" id="<%=key %>_item" href="#i:<%=key %>/s:1" data-name="<%=view %>" data-index="<%=key %>"><%=view %></a></li>
         <% }) %>
     </script>
-    
+
     <script id="tViewNav" type="text/html">
         <li class="viewnav view-<%=index %> <%= parent ? 'hasParent parentnav'+parent : '' %>" id="<%=id %>">
             <span class="vn-name"><span class="glyphicon"></span><%= (index+1)+". "+name %></span>
-            <span class="vn-action remove"> <span class="glyphicon glyphicon-remove"></span> </span> 
+            <span class="vn-action remove"> <span class="glyphicon glyphicon-remove"></span> </span>
         </li>
     </script>
-    
+
     <script id="tQuery" type="text/html">
 
             <div class="col-md-12 rows query no-selection bglite" id="<%=id %>">
@@ -217,7 +217,7 @@
                                     </span>
 
                                 <% } %>
-                                
+
                                 <span class="input-item">
                                     <span>Sort By</span>
                                     <select class="qsort form-control" name="sortOn">
@@ -241,10 +241,10 @@
 
                     </div>
                 </form>
-                
+
                 <div id="<%=id %>fPrompt" class="modal fade fpromptModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
-                        
+
                         <form class="form qpromtAdd" >
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -252,7 +252,7 @@
                                     <h4 class="modal-title">Add Filter</h4>
                                 </div>
                                 <div class="modal-body">
-                                    
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="col-md-8 form-group">
@@ -270,17 +270,17 @@
                                                 <select class="form-control" name="dataType">
                                                     <%= Html('#tOptionArray', {options : APP_DATA.dataTypes, selected : 'string'}) %>
                                                 </select>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="col-md-12 form-group">
                                                 <label>Value(Optional)</label>
                                                 <input class="form-control" name="value">
-                                            </div>                                           
+                                            </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                 </div>
                                 <div class="modal-footer">
                                     <span class="btn-group">
@@ -293,10 +293,10 @@
                         </form>
                     </div><!-- /.modal-dialog -->
                 </div>
-                
+
                 <div id="<%=id %>fUpdate" class="modal fade fupdateModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
-                        
+
                         <form class="form updateForm" >
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -324,45 +324,45 @@
                         </form>
                     </div><!-- /.modal-dialog -->
                 </div>
-                
+
             </div>
     </script>
-    
+
     <script id="tPrompt" type="text/html">
         <span id="<%= id %>" class="ipromt input-item" >
             <span class="input-name">
                 <b class="pull-left" onclick="toggleInput('#input<%= id %>')"><%=prompt.name %></b>
-                <span class="pull-right"> <%=prompt.operator %> | 
+                <span class="pull-right"> <%=prompt.operator %> |
                     <select class="ipinput" name="filter[<%= prompt.name %>][dataType]" >
                         <%= Html('#tOptionArray', {options : APP_DATA.dataTypes, selected : prompt.dataType}) %>
-                    </select> | 
-                <b class="removePrompt" data-remove="<%= id %>"> x </b></span>
+                    </select> |
+                <b class="removePrompt" onclick="$('#<%= id %>').remove()"> x </b></span>
             </span>
-            
+
             <input id="input<%= id %>" list="datalist<%= id %>" onfocus="this.value = this.value;" class="form-control" type="<%=prompt.type %>" name="filter[<%= prompt.name %>][operators][<%= prompt.operator %>]" value="<%= prompt.value || '' %>"/>
                 <datalist id="datalist<%= id %>">
                     <option value=""> select <%=prompt.name %></option>
                 </datalist>
         </span>
     </script>
-    
+
     <script id="tResult" type="text/html">
         <div class="result" id="<%=id %>"></div>
     </script>
-    
+
     <script id="tResultTop" type="text/html">
         <div class="rTopBar wide bglite">
             <b>Filtered: </b><%=meta.count || 0 %>, <b>Run Time : </b> <%= meta.endAt - meta.startAt %>ms <br>
             <b>Query : </b>
             <code class="rTopQuery" contenteditable="true" spellcheck="false"><%= meta.query %></code>
-            
+
         </div>
         <div class="wide result-set"></div>
         <div class="rBottomBar wide bglite">
             <span class="pull-right btn-group btn-group-xs">
                 <% if(meta.context.action === 'find' && meta.hasMore){ %>
-                    <button class="btn btn-success rNextPage" 
-                            data-last-entry="<%= meta.lastEntry %>" 
+                    <button class="btn btn-success rNextPage"
+                            data-last-entry="<%= meta.lastEntry %>"
                             data-entry-type="<%= Html.valueType(meta.lastEntry).valueType %>"
                             data-sort-on="<%= meta.context.sortOn %>"
                             data-sort-order="<%= meta.context.order %>"
@@ -371,7 +371,7 @@
             </span>
         </div>
     </script>
-    
+
     <script id="tResultSet" type="text/html">
         <div class="result-box" data-collection="<%= collection%>" data-value="<%= item._id %>" data-value-type="<%= Html.valueType(item._id).valueType %>">
             <div class="result-actions">
@@ -385,11 +385,11 @@
                 <span class="btn-xs ra-rotator"><span class="glyphicon glyphicon-refresh hide"></span></span>
                 <% if(join){ var cjoin; %>
                 <span class="btn-group btn-group-xs pull-right">
-                    
+
                     <% for(var toCollection in join){
                             cjoin = join[toCollection]
                     %>
-                        <span class="btn btn-success ra-join" 
+                        <span class="btn btn-success ra-join"
                             data-to-collection="<%=toCollection %>"
                             data-on-field="<%=cjoin.on %>"
                             data-from-field="<%=cjoin.from %>"
@@ -406,18 +406,18 @@
                     <pre class="text-info"><%= JSON.stringify(item, null, 2) %></pre>
                 </div>
                 <div class="result-data result-data-beautified">
-                    
+
                 </div>
             </div>
         </div>
     </script>
-    
+
     <script id="tResultList" type="text/html">
         <div class="result-data result-list-item">
             <pre class="text-info"><%= JSON.stringify(item, null, 2) %></pre>
         </div>
     </script>
-    
+
     <script id="tResultError" type="text/html">
         <div class="rTopBar">
             <div class="result-set error alert alert-danger">
@@ -430,17 +430,17 @@
             <option value="<%=value %>" <%= selected == value ? 'selected' : '' %> ><%=value %></option>
         <% }); %>
     </script>
-    
+
     <script id="tResultBeauty" type="text/html">
         <ul class="rbeauty">
-            <% 
+            <%
             var valueMap = {};
             for(var i in item){ %>
                 <% lkey = key ? key+'.'+i : i %>
                 <li class=""><span class="rbkey" data-key-type="<%=typeof item[i] %>" data-key="<%= lkey %>"> <%= i %></span>
                 <% if(typeof item[i] === 'object'){ %>
                     <span class="rbval-ul"><%= Html.beautify(item[i], lkey) %></span>
-                <% } else { 
+                <% } else {
                     valueMap = Html.valueType(item[i]);
                     %>
                     <span class="rbval-li">|
@@ -454,6 +454,6 @@
             <% } %>
         </ul>
     </script>
-    
+
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 module.exports = function(request, response, next){
     setTimeout(function(){
         next();

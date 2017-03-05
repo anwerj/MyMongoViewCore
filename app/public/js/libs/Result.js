@@ -1,5 +1,5 @@
 function Result(view, collection){
-    
+
     return {
         item : function(item, index, count){
             var result = $(Html('#tResultSet', {
@@ -16,9 +16,9 @@ function Result(view, collection){
         },
         string : function(item, index, count){
             return $(Html('#tResultList', { item : item }));
-            
+
         },
-        
+
         expandToggle : function(to, force){
 
             var resultItems = to.find('.result-items');
@@ -50,9 +50,9 @@ function Result(view, collection){
                 to.find('.ra-beautify').html('Beautify');
             }
         },
-        
+
         fireJoin : function(to, join){
-            
+
             var onField = join.data('on-field');
             var fromField = join.data('from-field');
             var onItem = to.find('.rbval[data-key="'+fromField+'"]');
@@ -73,9 +73,9 @@ function Result(view, collection){
             var nView = new View(obj, view.random);
             nView.activate();
             nView.submit();
-            
+
         },
-        
+
         appendSuccess : function(to, data){
             to.find('.result-join-top').html(Html('#tResultTop', {context : data.context, query : data.query}));
             var resultSet = to.find('.result-join-items');
@@ -85,10 +85,10 @@ function Result(view, collection){
                     resultSet.append(result.item(item, index));
                 });
             } else {
-                
+
             }
         },
-         
+
         bindEvents : function(to){
             var _this = this;
             to.find('.ra-expand').click(function(){
@@ -115,7 +115,7 @@ function Result(view, collection){
                 to.find('.ra-rotator .glyphicon').removeClass('hide').addClass('glyphicon-repeat gly-spin');
             }
         },
-        
+
         resultKeyClick : function(to){
 
             var keyType = to.data('key-type');
@@ -130,9 +130,9 @@ function Result(view, collection){
                 dataType : item.data('value-type')
             };
             view.fillFilter(prompt);
-            
+
         },
-        
+
         bindBeautifulEvents : function(to){
             var _this = this;
             to.find('.rbkey').click(function(){
@@ -159,13 +159,13 @@ function Result(view, collection){
                 rbval.text(rbval.data('value')).blur();
             });
         },
-        
+
         end : function(){
             this.bindEndEvents();
         },
-        
+
         bindEndEvents : function(){
-            
+
             view.result.find('.rNextPage').unbind('click').click(function(event){
                 event.preventDefault();
                 var prompt = {
@@ -178,7 +178,7 @@ function Result(view, collection){
                 view.fillFilter(prompt, true);
             });
         },
-        
+
         activateUpdateView : function(to, set){
             var updated = $(to).find('.rbval-updated .rbval:not([data-key="_id"])').toArray();
             if(!set){
@@ -187,7 +187,7 @@ function Result(view, collection){
             if(!updated.length){
                 return Handler('No field select to Update.');
             }
-            
+
             var set = {};
             updated.forEach(function(item, index){
                 set[$(item).data('key')] = {
@@ -197,7 +197,7 @@ function Result(view, collection){
             });
             return set;
         },
-        
+
         refreshResult : function(to, updated){
             var filter = {_id : { operators : {eq : to.data('value')}, dataType : to.data('value-type')} };
             var set = this.activateUpdateView(to, updated);
@@ -217,7 +217,7 @@ function Result(view, collection){
                 view.appendError(xhr);
             });
         },
-        
+
         deleteResult : function(to, force){
             var filter = {_id : { operators : {eq : to.data('value')}, dataType : to.data('value-type')} };
             if(!(force || Handler.prompt('Are you sure about deleting : '+ to.data('value')))){
