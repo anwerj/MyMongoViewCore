@@ -1,0 +1,18 @@
+{
+    "port" : "12098",
+    "default" : 0,
+    "connections" : [
+        {
+            "name" : "Connection",
+            "string" : "localhost:27017/test",
+            "options" : {},
+            "config" : {
+                "debug" : true
+            },
+            "container" : "container"
+        }
+    ],
+    "viewpath" : "views",
+    "timezone"  :   "Etc/GMT"
+
+}

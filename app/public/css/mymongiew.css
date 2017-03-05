@@ -1,0 +1,362 @@
+.base{
+    font-size: 13px;
+}
+.header{
+    width: 100%;
+    float: right;
+    line-height: 50px;
+}
+.bgdarker{
+    background: #222;
+}
+.bgdark{
+    background: #444;
+}
+.bglite{
+    background: #eee;
+}
+.wide{
+    float: left;
+    width: 100%;
+}
+.rows{
+    padding: 0px;
+}
+.sidebar a,.sidebar a:hover,.sidebar  a:visited,.sidebar  a:active{
+    color: white;
+    text-decoration: none;
+    padding: 3px 5px;
+}
+ul,li{
+    list-style: none;
+    padding: 3px 0px;
+    margin: 0;
+}
+.strip>*:nth-child(odd){
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.logo{
+    font-size: 24px;
+    color: #1FB45F;
+}
+.logo>span{
+    font-size: 24px;
+    color: #C8731B;
+    font-weight: bold;
+}
+.logo-side{
+    padding: 20px 10px;
+    float: right;
+    text-align: right;
+}
+.w100{
+    width: 100%;
+}
+
+.box{
+    width: 100%;
+    height: 100%;
+    float: right;
+    overflow: hidden;
+}
+.sidebar{
+
+}
+.side-views{
+    height: 100%;
+    padding: 0px;
+}
+.side-navs{
+    height: 100%;
+    padding: 0px;
+    overflow: auto;
+}
+
+.title{
+    padding: 5px;
+    font-size: 16px;
+    color: #33BB44;
+    text-transform: capitalize;
+}
+.viewlist .title{
+    cursor: pointer;
+}
+.viewlist .viewlistactive{
+    display: none;
+}
+.viewlist.active .viewlistactive{
+    display: block;
+}
+.viewlist .connection_details{
+    padding: 5px;
+}
+.viewname{
+    color: white;
+}
+.viewnav{
+    width: 100%;
+    float: left;
+    font-size: 14px;
+    line-height: 24px;
+    cursor: pointer;
+}
+.viewnav.active{
+    background: rgba(255, 255, 255, 0.2);
+}
+.viewnav.hasParent{
+    padding-left: 20px;
+}
+.viewnav .vn-name{
+    display: inline-block;
+    padding: 5px 10px 5px 0;
+    float: left;
+    color: white !important;
+    max-width: 280px;
+    word-break: break-all;
+    overflow: hidden;
+    height: 28px;
+}
+.viewnav .vn-name .glyphicon{
+    padding: 0 5px;
+}
+.viewnav .vn-action{
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    float: right;
+    cursor: pointer;
+}
+.vn-children .viewnav{
+    padding-left: 10px;
+    color: #eee;
+}
+
+.views{
+    height: 100%;
+    float: right;
+    overflow: auto;
+}
+.collections{
+    display: none;
+    padding: 3px;
+    position: absolute;
+    z-index: 99;
+    background: white;
+    border-bottom: 5px solid #999;
+}
+.collections.active{
+    display: block;
+}
+.collections .collectionbar{
+    padding: 5px;
+}
+.collections .collectionbtn{
+    padding: 3px 5px;
+    border : 3px solid white;
+}
+.collections .colstring{
+    font-weight: bold;
+    max-height: 20px;
+    overflow: hidden;
+}
+.queries{
+}
+.query{
+    display: none;
+}
+.querow{
+    padding: 10px;
+    border-bottom: 1px solid #bbb;
+}
+.query.active{
+    display: block;
+}
+.qpromt{
+    display: block;
+}
+.querow .form-control{
+    padding: 2px;
+    font-size: 12px;
+    height: 20px;
+    border: none;
+    color: #759c99;
+}
+.querow .qcollection{
+    font-weight: bold;
+    color: #3b4;
+    border: 0px;
+}
+.input-item{
+    display: inline-block;
+    padding: 2px;
+    background: #ccc;
+    border-radius: 3px;
+    margin: 1px 0 1px 0;
+}
+.input-item>span{
+    font-size: 11px;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    padding: 0px 3px;
+}
+.input-name b{
+    padding: 0px 4px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.input-item .ipinput{
+    border: none;
+    background: none;
+    padding: 2px 4px;
+    width: 40px;
+}
+.input-item .input-xs{
+    width: 40px;
+    padding: 6px 0 6px 6px;
+}
+
+
+
+.results{
+}
+.result{
+    display: none;
+}
+.result.active{
+    display: block;
+}
+.rTopBar{
+    padding: 10px;
+    border-bottom: 1px solid #bbb;
+}
+.rTopBar .rTopQuery{
+    background: none;
+    outline: none;
+}
+.rBottomBar{
+    padding: 10px;
+    border-top: 1px solid #bbb;
+}
+.result-set{
+    padding-bottom: 10px;
+}
+.result-actions{
+    padding: 5px;
+    margin: 10px 10px 0 10px;
+    border: 1px solid #eee;
+    background: #fafafa;
+    border-radius: 2px 2px 0 0;
+}
+.result-items{
+    margin: 0 10px;
+    max-height: 100px;
+    overflow: hidden;
+}
+.expanded .result-items{
+    height: auto;
+    max-height: 100%;
+    overflow: auto;
+}
+.result-data{
+    float: left;
+    margin: 0 5px 5px 0;
+    border-left: 1px solid #efefef;
+}
+.result-data-prettified pre{
+    background: white;
+    font-size: 12px;
+    border : none;
+    padding: 5px;
+    margin: 0px;
+}
+.result-data-beautified{
+    display: none;
+}
+.beautified .result-data-beautified{
+    display: block;
+}
+.beautified .result-data-prettified{
+    display: none;
+}
+.result-join{
+    float: left;
+}
+.result-list-item{
+    margin: 10px;
+    border-left: 1px solid #efefef; 
+}
+
+.rbeauty{
+    width: 100%;
+    padding: 5px;
+    font-size: 12px;
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+.rbeauty ul{
+    padding: 0 10px;
+}
+.rbeauty li{
+    width : 100%;
+    padding: 0;
+    margin: 3px;
+    line-height: 14px;
+}
+.rbeauty li>span{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 14px;
+}
+.rbeauty .rbkey{
+    display: inline-block;
+    padding: 0 8px 0 5px;
+    background: #f6fs6f6;
+    margin-right: -10px;
+    color: #555;
+    cursor: pointer;
+}
+.rbeauty .rbkey:hover{
+    color: #000;
+}
+.rbeauty .rbval-ul{
+    display: block;
+}
+
+.rbeauty .rbval-li{
+    display: inline-block;
+    background: white;
+    color: #ccc;
+}
+.rbeauty .rbval{
+    margin: 0 5px;
+}
+.rbeauty .rbval:focus{
+    margin: 0 5px;
+}
+.rbeauty span[data-value-type="id"]{
+    color: #ef762b;
+}
+.rbeauty span[data-value-type="number"]{
+    color: #ef062b;
+}
+.rbeauty span[data-value-type="string"]{
+    color: #0b9086;
+}
+.rbeauty span[data-value-type="date"]{
+    color: #337ab7;
+}
+.rbeauty .rbval-updated{
+    background: #eee;
+}
+.rbeauty .rbval-actions{
+    color: #777;
+    padding: 0 0 0 5px;
+    display: none;
+    font-size: 10px;
+    cursor: pointer;
+}
+.rbeauty li:hover .rbval-updated .rbval-actions{
+    display: inline-block;
+}
+
