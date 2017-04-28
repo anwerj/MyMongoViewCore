@@ -445,7 +445,7 @@
             </div>
             <div class="result-items">
                 <div class="result-data result-data-prettified">
-                    <pre class="text-info"><%= JSON.stringify(item, null, 2) %></pre>
+                    <pre class="text-info"><%= Html.escapeHtml(JSON.stringify(item, null, 2)) %></pre>
                 </div>
                 <div class="result-data result-data-beautified">
 
@@ -456,7 +456,7 @@
 
     <script id="tResultList" type="text/html">
         <div class="result-data result-list-item">
-            <pre class="text-info"><%= JSON.stringify(item, null, 2) %></pre>
+            <pre class="text-info"><%= Html.escapeHtml(JSON.stringify(item, null, 2)) %></pre>
         </div>
     </script>
 
@@ -487,7 +487,7 @@
                     valueMap = Html.valueType(item[i]);
                     %>
                     <span class="rbval-li">|
-                        <span class="rbval" data-key="<%= lkey %>" data-value-type="<%= valueMap.valueType %>" contenteditable="true" spellcheck="false" data-value="<%= valueMap.value %>"><%= valueMap.value %></span>
+                        <span role="span" class="rbval" data-key="<%= lkey %>" data-value-type="<%= valueMap.valueType %>" contenteditable="true" spellcheck="false"><%= valueMap.value %></span>
                         <span class="rbval-actions">
                             <span class="rbval-reset"><i class="glyphicon glyphicon-refresh"></i></span>
                         </span>

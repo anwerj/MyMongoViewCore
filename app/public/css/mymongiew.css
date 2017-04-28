@@ -337,21 +337,24 @@ ul,li{
     color: #ccc;
 }
 .rbeauty .rbval{
+    display: inline;
     margin: 0 5px;
+    padding: 0px;
+    height: auto;
 }
 .rbeauty .rbval:focus{
     margin: 0 5px;
 }
-.rbeauty span[data-value-type="id"]{
+.rbeauty .rbval[data-value-type="id"]{
     color: #ef762b;
 }
-.rbeauty span[data-value-type="number"]{
+.rbeauty .rbval[data-value-type="number"]{
     color: #ef062b;
 }
-.rbeauty span[data-value-type="string"]{
+.rbeauty .rbval[data-value-type="string"]{
     color: #0b9086;
 }
-.rbeauty span[data-value-type="date"]{
+.rbeauty .rbval[data-value-type="date"]{
     color: #337ab7;
 }
 .rbeauty .rbval-updated{

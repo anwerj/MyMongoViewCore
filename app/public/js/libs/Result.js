@@ -8,6 +8,7 @@ function Result(view, collection){
                 collection : collection,
                 join : view.view.join
             }));
+            result._item = item;
             this.bindEvents(result);
             if(count < 10){
                 this.beautifyToggle(result);
@@ -16,13 +17,10 @@ function Result(view, collection){
         },
         string : function(item, index, count){
             return $(Html('#tResultList', { item : item }));
-
         },
 
         expandToggle : function(to, force){
-
             var resultItems = to.find('.result-items');
-
             if(!to.hasClass('expanded') || force){
                 to.addClass('expanded');
                 to.find('.ra-expand').html('Shrink');
@@ -37,8 +35,8 @@ function Result(view, collection){
                 this.expandToggle(to, true)
                 var beautified = to.find('.result-data-beautified');
                 if(!beautified.hasClass('beautified')){
-                    var html = $(Html.beautify(JSON.parse(to.find('.result-data-prettified').text())));
-                    this.bindBeautifulEvents(html);
+                    var html = $(Html.beautify(to._item));
+                    this.bindBeautifulEvents(html, to._item);
                     beautified.html(html).addClass('beautified');
                 }
                 // Add beautify
@@ -133,7 +131,7 @@ function Result(view, collection){
 
         },
 
-        bindBeautifulEvents : function(to){
+        bindBeautifulEvents : function(to, result){
             var _this = this;
             to.find('.rbkey').click(function(){
                 _this.resultKeyClick($(this));
@@ -142,7 +140,8 @@ function Result(view, collection){
                 $(this).find('.rbval').attr('spellcheck', 'false').focus();
             });
             to.find('.rbval').blur(function(){
-                var oldVal = $(this).data('value');
+                var oldKey = $(this).data('key');
+                var oldVal = result[oldKey];
                 var newVal = $(this).text();
                 if($(this).data('value-type') === 'boolean'){
                     newVal = (newVal == 'true');
@@ -156,7 +155,9 @@ function Result(view, collection){
             });
             to.find('.rbval-reset').click(function(){
                 var rbval = $(this).parent().prev();
-                rbval.text(rbval.data('value')).blur();
+                var oldKey = rbval.data('key');
+                var oldVal = result[oldKey];
+                rbval.text(oldVal).blur();
             });
         },
 
