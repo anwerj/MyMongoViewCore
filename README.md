@@ -6,18 +6,23 @@ MyMongoView provides easy, customizable views to query MongoDB. And above all th
 [comment]: # (head.installation)
 ### Installation
 
-Install MyMongoView with npm, create a directory and run given command from that directory.
+Install MyMongoView from Github, and go to MyMongoView directory.
 ``` bash
-$ npm install my-mongo-view
+ git clone https://github.com/anwerjunaid/MyMongoView.git && cd MyMongoView
 ```
 
-Now, if you are installing it first time, Copy file `sample.config.json` to `config.json`
+Now, you need to install npm dependencies
 ``` bash
-$ cp sample.config.json config.json
+ npm install my-mongo-view
 ```
 Setup your MongoDB Connections from `config.json` file. There is a default connection with default views.
 Just change connections.string to your MongoDB instance.    
 > You can also add multiple connections.
+
+You are ready start application from index.js
+``` bash
+ node index.js
+```
 
 **Connection Parameters :**
 
@@ -52,13 +57,13 @@ module.exports = {
 
     name : 'Orders',
     collection : 'orders',
-    
+
     prompt : {
         buyer_id : {},
         order_status : { operators : { eq : '', gt : '' } },
         status : { dataType : 'number' }
     },
-    
+
     join : {
         items : {on : 'parent', from : '_id'},
         buyers : {on : 'buyer_id', from : '_id'}
